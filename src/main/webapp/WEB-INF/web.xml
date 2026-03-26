@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!-- Register Servlet -->
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.example.servlets.registration.RegisterServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+    	<servlet-name>LoginServlet</servlet-name>
+    	<servlet-class>com.example.servlets.login.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+    	<servlet-name>LoginServlet</servlet-name>
+    	<url-pattern>/LoginServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+    <servlet-name>ComplaintServlet</servlet-name>
+    <servlet-class>ComplaintServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>ComplaintServlet</servlet-name>
+    <url-pattern>/complaint</url-pattern>
+</servlet-mapping>
+    <servlet>
+    <servlet-name>SubmitRequestServlet</servlet-name>
+    <servlet-class>com.example.servlets.request.SubmitRequestServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>SubmitRequestServlet</servlet-name>
+    <url-pattern>/submitRequest</url-pattern>
+</servlet-mapping>
+    <servlet>
+        <servlet-name>AssignOfficerServlet</servlet-name>
+        <servlet-class>com.example.servlets.admin.AllocateOfficerServlet</servlet-class>
+    </servlet>
+
+    <!-- Mapping URL -->
+    <servlet-mapping>
+        <servlet-name>AssignOfficerServlet</servlet-name>
+        <url-pattern>/AllocateOfficerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+    <servlet-name>CompleteRequestServlet</servlet-name>
+    <servlet-class>com.example.servlets.officer.CompleteRequestServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>CompleteRequestServlet</servlet-name>
+    <url-pattern>/CompleteRequestServlet</url-pattern>
+</servlet-mapping>
+<servlet>
+    <servlet-name>PayServlet</servlet-name>
+    <servlet-class>com.example.servlets.user_payment.PayServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>PayServlet</servlet-name>
+    <url-pattern>/PayServlet</url-pattern>
+</servlet-mapping>
+</web-app>

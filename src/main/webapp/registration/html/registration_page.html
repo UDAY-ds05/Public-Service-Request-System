@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration — PSRS</title>
+  <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+
+  <!-- ═══ LEFT PANEL — branding + video ═══ -->
+  <div class="left-panel">
+
+    <div class="brand">
+      <div class="brand-icon">🏛️</div>
+      <span class="brand-name">Public Service Request System</span>
+    </div>
+
+    <!-- ► INSERT YOUR VIDEO HERE ◄
+         Replace the .video-placeholder div with:
+         <video src="registrationback.mp4" autoplay muted loop playsinline></video> -->
+    <div class="video-wrapper">
+      <!-- <video autoplay muted loop playsinline><source src="registrationback.mp4" type="video/mp4"></video> -->
+      <div class="video-placeholder">
+        <span>🎬</span>
+        Insert your video here
+      </div>
+    </div>
+
+    <p class="tagline">Join the system.<br><em>Make your voice heard.</em></p>
+    <p class="sub">Create your account to submit and track<br>public service requests in your area.</p>
+
+  </div>
+
+  <!-- ═══ RIGHT PANEL — registration form ═══ -->
+  <div class="right-panel">
+    <div class="form-box">
+
+      <div class="role-badge">📝 &nbsp;New Account</div>
+      <h2>User Registration</h2>
+      <p class="form-subtitle">Fill in the details below to create your account.</p>
+
+      <form id="registerForm" action="/MyWebApp/RegisterServlet" method="post">
+
+        <!-- Row: First + Last Name -->
+        <div class="form-row">
+          <div class="field">
+            <label for="fname">First Name</label>
+            <div class="input-group">
+              <span class="input-icon">👤</span>
+              <input type="text" id="fname" name="fname" placeholder="First name" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="lname">Last Name</label>
+            <div class="input-group">
+              <span class="input-icon">👤</span>
+              <input type="text" id="lname" name="lname" placeholder="Last name" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Username -->
+        <label for="username">Username</label>
+        <div class="input-group">
+          <span class="input-icon">🪪</span>
+          <input type="text" id="username" name="username" placeholder="Choose a username" required>
+        </div>
+
+        <!-- Row: Email + Mobile -->
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <div class="input-group">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="mobile">Mobile Number</label>
+            <div class="input-group">
+              <span class="input-icon">📱</span>
+              <input type="tel" id="mobile" name="mobile" placeholder="+91 00000 00000" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row: Gender + Role -->
+        <div class="form-row">
+          <div class="field">
+            <label>Gender</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="gender" value="Male" required>
+                <span>Male</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="gender" value="Female">
+                <span>Female</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="gender" value="Other">
+                <span>Other</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="role">Role</label>
+            <div class="input-group select-group">
+              <span class="input-icon">🏷️</span>
+              <select id="role" name="role" required>
+                <option value="">Select Role</option>
+                <option value="Admin">Admin</option>
+                <option value="Citizen">Citizen</option>
+                <option value="Officer">Service Officer</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <label for="address">Address</label>
+        <div class="input-group textarea-group">
+          <span class="input-icon top">📍</span>
+          <textarea id="address" name="address" rows="2" placeholder="Enter your address" required></textarea>
+        </div>
+
+        <!-- Row: Password + Confirm -->
+        <div class="form-row">
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-group">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="password" name="password" placeholder="Create password" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="input-group">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat password" required>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit"><span>Create Account</span></button>
+
+      </form>
+
+      <div class="back-link">
+        <p>Already have an account? <a href="../loginmodule/select_role.html">Back to Login</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      const password        = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      if (password !== confirmPassword) {
+        e.preventDefault();
+        alert("Passwords do not match!");
+      }
+    });
+  </script>
+
+</body>
+</html>

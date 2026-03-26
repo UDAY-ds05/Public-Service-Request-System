@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Role — PSRS</title>
+  <link rel="stylesheet" href="../css/role.css">
+</head>
+<body>
+  <!-- ═══ LEFT PANEL — branding + video ═══ -->
+  <div class="left-panel">
+    <div class="brand">
+      <div class="brand-icon">🏛️</div>
+      <span class="brand-name">Public Service Request System</span>
+    </div>
+    <!-- ► INSERT YOUR VIDEO HERE ◄
+         Replace the .video-placeholder div with:
+         <video src="your-video.mp4" autoplay muted loop playsinline></video>
+         or an <iframe> embed -->
+    <div class="video-wrapper">
+       <video autoplay muted loop playsinline><source src="registration.mp4" type="video/mp4"></video> 
+      <div class="video-placeholder">
+        <span>🎬</span>
+        Insert your video here
+      </div>
+    </div>
+    <p class="tagline">Serving the public.<br><em>One request at a time.</em></p>
+    <p class="sub">Choose your role to access the portal.<br>Restricted areas require verification.</p>
+  </div>
+  <!-- ═══ RIGHT PANEL — role selection ═══ -->
+  <div class="right-panel">
+    <div class="form-box">
+      <div class="role-badge">🏛️ &nbsp;Portal Access</div>
+      <h2>Select Your Role</h2>
+      <p class="form-subtitle">Choose how you'd like to access the system.</p>
+      <div class="roles-grid">
+        <button class="role-card" onclick="goCitizen()">
+          <div class="role-card-icon-wrap">👤</div>
+          <div class="role-card-content">
+            <div class="role-card-title">Citizen</div>
+            <div class="role-card-desc">Submit and track public service requests</div>
+          </div>
+          <div class="role-card-arrow">→</div>
+        </button>
+        <button class="role-card" onclick="openModal('officer')">
+          <div class="role-card-icon-wrap">🗂️</div>
+          <div class="role-card-content">
+            <div class="role-card-title">Service Officer</div>
+            <div class="role-card-desc">Manage and respond to assigned requests</div>
+          </div>
+          <div class="role-card-arrow">→</div>
+        </button>
+        <button class="role-card" onclick="openModal('admin')">
+          <div class="role-card-icon-wrap">🛡️</div>
+          <div class="role-card-content">
+            <div class="role-card-title">Administrator</div>
+            <div class="role-card-desc">Full system control — users, departments & reports</div>
+          </div>
+          <div class="role-card-arrow">→</div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- ═══ VERIFICATION MODAL ═══ -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBackdrop(event)">
+    <div class="modal">
+      <span class="modal-icon" id="modalIcon">🔐</span>
+      <h3 id="modalTitle">Verify Access</h3>
+      <p id="modalDesc">Enter your verification password to continue.</p>
+      <div class="input-group">
+        <span class="input-icon">🔒</span>
+        <input type="password" id="verifyInput" placeholder="Enter verification password"
+               onkeydown="if(event.key==='Enter') confirmAccess()">
+      </div>
+      <div class="error-msg" id="errorMsg">❌ Incorrect password. Access denied.</div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-confirm" onclick="confirmAccess()"><span>Confirm</span></button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const ADMIN_KEY   = "ADMIN@123";
+    const OFFICER_KEY = "OFFICER@123";
+    let currentRole   = null;
+    const roleConfig = {
+      admin: {
+        icon:  '🛡️',
+        title: 'Admin Verification',
+        desc:  'Enter the administrator password to access the Admin Portal.',
+        dest:  'admin_login.html'
+      },
+      officer: {
+        icon:  '🗂️',
+        title: 'Officer Verification',
+        desc:  'Enter the officer password to access the Service Officer Portal.',
+        dest:  'officer_login.html'
+      }
+    };
+    function openModal(role) {
+      currentRole = role;
+      const cfg = roleConfig[role];
+      document.getElementById('modalIcon').textContent  = cfg.icon;
+      document.getElementById('modalTitle').textContent = cfg.title;
+      document.getElementById('modalDesc').textContent  = cfg.desc;
+      document.getElementById('verifyInput').value      = '';
+      document.getElementById('errorMsg').classList.remove('show');
+      document.getElementById('modalOverlay').classList.add('active');
+      setTimeout(() => document.getElementById('verifyInput').focus(), 100);
+    }
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      currentRole = null;
+    }
+    function closeModalOnBackdrop(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+    function confirmAccess() {
+      const entered = document.getElementById('verifyInput').value;
+      const key = currentRole === 'admin' ? ADMIN_KEY : OFFICER_KEY;
+      if (entered === key) {
+        window.location.href = roleConfig[currentRole].dest;
+      } else {
+        document.getElementById('errorMsg').classList.add('show');
+        document.getElementById('verifyInput').value = '';
+        document.getElementById('verifyInput').focus();
+      }
+    }
+    function goCitizen() {
+      window.location.href = 'citizen_login.html';
+    }
+  </script>
+</body>
+</html>

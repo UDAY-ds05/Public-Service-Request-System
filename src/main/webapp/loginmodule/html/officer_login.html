@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Officer Login — PSRS</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+  <!-- ═══ LEFT PANEL — branding + video ═══ -->
+  <div class="left-panel">
+
+    <div class="brand">
+      <div class="brand-icon">⚙</div>
+      <span class="brand-name">Public Service Request System</span>
+    </div>
+
+    <!-- ► INSERT YOUR VIDEO HERE ◄
+         Replace the .video-placeholder div with:
+         <video src="your-video.mp4" autoplay muted loop playsinline></video>
+         or an <iframe> embed -->
+    <div class="video-wrapper">
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="login.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+    <p class="tagline">Resolve faster.<br><em>Serve better.</em></p>
+    <p class="sub">Officer portal — view assigned complaints,<br>update status and close resolved requests.</p>
+
+  </div>
+
+  <!-- ═══ RIGHT PANEL — form ═══ -->
+  <div class="right-panel">
+    <div class="form-box">
+
+      <div class="role-badge">🔧 &nbsp;Officer Portal</div>
+      <h2>Officer Login</h2>
+      <p class="form-subtitle">Sign in to manage and resolve service requests.</p>
+
+      <form id="loginForm" action="/MyWebApp/LoginServlet" method="post">
+
+        <input type="hidden" name="loginType" value="OFFICER">
+
+        <label for="username">Officer Username</label>
+        <div class="input-group">
+          <span class="input-icon">👤</span>
+          <input type="text" id="username" name="username"
+                 placeholder="Enter officer username" required>
+        </div>
+
+        <label for="password">Password</label>
+        <div class="input-group">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="password" name="password"
+                 placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit"><span>Sign In</span></button>
+
+      </form>
+
+      <div class="register-row">
+        <p>Don't have an account?</p>
+        <a href="../../registration/html/registration_page.html">
+          <button type="button">Register as Officer</button>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      const u = document.getElementById("username").value.trim();
+      const p = document.getElementById("password").value.trim();
+      if (u === "" || p === "") {
+        e.preventDefault();
+        alert("Please enter both username and password!");
+      }
+    });
+  </script>
+  <script src="login.js"></script>
+
+</body>
+</html>
