@@ -23,7 +23,7 @@
 <!-- ═══════════ HEADER ═══════════ -->
 <header>
     <nav>
-        <h2>Public Service Request System</h2>
+        <h2>Online Public Service Request System</h2>
         <button onclick="goToLogin()">Login</button>
     </nav>
 </header>
